@@ -31,7 +31,6 @@ var htmlAppend = $("html").append(`
 	<div>
 	<button class="btn btn-layered-3d btn-layered-3d--blue" style="width:100%; text-align: center;" id="makeNoteButton">Make Note </button><br>
 	<button class="btn btn-layered-3d btn-layered-3d--purple " style="width:100%; text-align: center;" id='saveNotesWBJS'>Browser</button><br>
-	<button class="btn btn-layered-3d btn-layered-3d--purple" style="width:100%; text-align: center;" id='exportNotesJSON'>JSON</button><br>
 	</div>
 </div> 
 `);

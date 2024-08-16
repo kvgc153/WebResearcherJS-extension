@@ -92,8 +92,8 @@ function loadOtherModules(tabID){
 }
 
 // Server variables
-var serverHost  = "http://127.0.0.1:3000";
-// var serverHost  = "http://webresearcher.xyz:3000";
+// var serverHost  = "http://127.0.0.1:3000";
+var serverHost  = "http://webresearcher.xyz:3000";
 
 var fetchServer = serverHost + "/getData";
 var postServer  = serverHost + `/data`;
@@ -114,6 +114,8 @@ function handleMessage(request, sender, sendResponse) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+
       },
     })
       .then((response) => response.json())
@@ -132,6 +134,7 @@ function handleMessage(request, sender, sendResponse) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": "Bearer e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },          
     }
     ).then(()=>{
@@ -139,6 +142,7 @@ function handleMessage(request, sender, sendResponse) {
         response: "saved"
       })
     }).catch((error)=>{
+      console.log(error)
       return({
         response: "error"
       })
@@ -151,11 +155,3 @@ function handleMessage(request, sender, sendResponse) {
 browser.runtime.onMessage.addListener(handleMessage);
 
 ////////////////////////////////////////////////////////////
-
-
-
-// browser.contextMenus.onClicked.addListener(function(info, tab) {
-//   if (info.menuItemId == "eat-page") {
-//       loadJQuery();
-//   }
-// });

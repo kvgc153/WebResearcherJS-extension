@@ -1,11 +1,11 @@
 {
 	"manifest_version": 2,
 	"name": "WebResearcherJS",
-	"version": "7.0.2",
+	"version": "7.0.3",
 	"description": "https://github.com/kvgc153/WebResearcherJS-extension",
 
 	"permissions": [
-		"<all_urls>", "activeTab", "tabs","contextMenus"
+		"<all_urls>", "activeTab", "tabs","contextMenus", "storage"
 	],
 
 	"browser_action": {
@@ -27,5 +27,9 @@
     "js": ["webresearcher/contentScript.js"],
 	"run_at":"document_start"
   }
-]
+],
+"options_ui": {
+    "page": "webresearcher/options.html",
+	"browser_style": true
+  }
 }

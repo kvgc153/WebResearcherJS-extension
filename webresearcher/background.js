@@ -98,6 +98,19 @@ var serverHost  = "http://webresearcher.xyz:3000";
 var fetchServer = serverHost + "/getData";
 var postServer  = serverHost + `/data`;
 
+
+var wbjsToken = ""
+function getToken(){
+  var token = browser.storage.sync.get('wbjsToken');
+  token.then((res) => {
+
+    wbjsToken = JSON.parse(res.wbjsToken);
+    console.log("Got token and set it:" + wbjsToken);
+  });
+}
+getToken();
+
+
 function handleMessage(request, sender, sendResponse) {
   if(request.greeting == "trigger"){
     console.log("Message from the content script: " + request.greeting);
@@ -108,13 +121,14 @@ function handleMessage(request, sender, sendResponse) {
   }
 
   else if (request.greeting == "fetch"){
-    console.log("Fetching data from server");
+    console.log("Fetching data from server with token: " + wbjsToken);
+
     return fetch(fetchServer, {
       body: request.data, 
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        "Authorization": "Bearer "  + wbjsToken
 
       },
     })
@@ -128,13 +142,14 @@ function handleMessage(request, sender, sendResponse) {
   }
   else if (request.greeting == "save"){
     console.log("Saving data to server");
+
     return  fetch(postServer,
     {
         body: JSON.stringify(request.data),
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          "Authorization": "Bearer "  + wbjsToken
         },          
     }
     ).then(()=>{
@@ -155,3 +170,9 @@ function handleMessage(request, sender, sendResponse) {
 browser.runtime.onMessage.addListener(handleMessage);
 
 ////////////////////////////////////////////////////////////
+// Options page //
+function handleClick() {
+  browser.runtime.openOptionsPage();
+}
+
+browser.browserAction.onClicked.addListener(handleClick);

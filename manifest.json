@@ -15,7 +15,7 @@
 
 	"applications": {
 		"gecko": {
-			"id": "webresearcher@webresearcher.io"
+			"id": "test@webresearcher.io"
 		}
 	},
 	"background": {

@@ -93,7 +93,7 @@ function loadOtherModules(tabID){
 
 // Server variables
 // var serverHost  = "http://127.0.0.1:3000";
-var serverHost  = "http://webresearcher.xyz:3000";
+var serverHost  = "http://webresearcher.xyz:3001";
 
 var fetchServer = serverHost + "/getData";
 var postServer  = serverHost + `/data`;
